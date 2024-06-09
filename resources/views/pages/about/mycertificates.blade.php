@@ -1,4 +1,4 @@
-<!-- ======= pages/about/page ======= -->
+<!-- ======= pages/about/mycertificates ======= -->
 
 @extends('home')
 
@@ -31,24 +31,24 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+                @foreach ($data as $isi)
                     <div class="bg-white rounded-lg shadow-lg p-6">
                         <div class="relative overflow-hidden">
                             <div class="h-[300px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
                                 <iframe class="shadow-md w-full h-full object-cover" frameborder="0" allowfullscreen="1"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     width="100%" height="100%"
-                                    src="{{asset("assets/video/SanbercodeCertificate.mp4")}}"
+                                    src="{{$isi->video}}"
                                     id="widget2">
                                 </iframe>
                             </div>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 text-center mt-4">Sanbercode Bootcamp Certificate</h3>
+                        <h3 class="text-xl font-bold text-gray-900 text-center mt-4">{{$isi->title}}</h3>
                         <p class="text-gray-500 text-sm text-justify mt-2">
-                            Sanbercode Bootcamp Certificate adalah sebuah sertifikat yang berhasil didapatkan 
-                            setelah mengerjakan segala macam tugas dan project yang telah diberikan 
-                            oleh penyelenggara Bootcamp bernama Sanbercode.
+                            {{$isi->explain}}
                         </p>
                     </div>
+                @endforeach
             </div>
         </div>
     </div>

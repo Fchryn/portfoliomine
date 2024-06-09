@@ -41,7 +41,9 @@
                             <div class="border-t border-gray-700 mt-2 mb-4"></div>
                             <div class="flex -mx-2 mt-2">
                                 <div class="w-full px-2">
-                                    <button class="w-full text-white transition-colors bg-emerald-950 hover:bg-yellow-950 hover:ring-yellow-950 py-2 px-4 rounded-full font-bold">Execute</button>
+                                    <a href="/terminal" class="text-white transition-colors bg-emerald-950 hover:bg-yellow-950 hover:ring-yellow-950 py-2 px-4 rounded-full font-bold">
+                                        Running This Project
+                                    </a>
                                 </div>
                             </div>
                         </div>

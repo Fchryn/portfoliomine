@@ -35,7 +35,6 @@
                     </div>
                 </div>
                 <div>
-
                     <input type="checkbox" id="" class="hidden" style="display:none" name="botcheck">
                     <div class="mb-5">
                         <input type="text" placeholder="Full Name" autocomplete="false"

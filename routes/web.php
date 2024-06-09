@@ -3,16 +3,20 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\TerminalController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
-Route::get('/myprojects', [AboutController::class, 'myprojects'])->name('myprojects');
+Route::get('/terminal', [TerminalController::class, 'terminal']);
+Route::post('/execute-command', [TerminalController::class, 'execute']);
+Route::post('/stop-process', [TerminalController::class, 'stopProcess']);
+Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/mycertificates', [AboutController::class, 'mycertificates'])->name('mycertificates');
-Route::group(['prefix' => 'about', 'as' => 'about.'], function () {
-    Route::get('/', [AboutController::class, 'index'])->name('index');
+Route::group(['prefix' => 'myprojects', 'as' => 'myprojects.'], function () {
+    Route::get('/', [AboutController::class, 'myprojects'])->name('myprojects');
     Route::get('/{id}', [AboutController::class, 'detail'])->name('detail');
 });
 

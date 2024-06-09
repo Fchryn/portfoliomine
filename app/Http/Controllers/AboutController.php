@@ -4,24 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\about;
+use Illuminate\Support\Facades\Session;
+use App\Models\command;
 
 class AboutController extends Controller
 {
-    public function index()
+    public function about()
     {
-        $data = about::all();
+        $data = about::take(6)->get();
         return view('pages.about.page', compact('data'));
     }
 
     public function myprojects()
     {
-        $data = about::all();
+        $data = about::take(6)->get();
         return view('pages.about.page', compact('data'));
     }
 
     public function mycertificates()
     {
-        $data = about::all();
+        $data = about::skip(6)->take(1)->get();
         return view('pages.about.mycertificates', compact('data'));
     }
 
