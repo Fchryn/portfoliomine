@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('command');
             $table->text('output')->nullable();
+            $table->string('arduino')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

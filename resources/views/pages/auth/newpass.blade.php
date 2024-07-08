@@ -19,14 +19,14 @@
                     <div class="grid gap-y-4">
                     <div>
                         <div class="relative">
-                        <input type="newpass" id="newpass" name="newpass" placeholder="Create your password" class="py-3 px-4 block w-full border-2 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm" required aria-describedby="email-error">
+                        <input type="text" id="newpass" name="newpass" placeholder="Create your password" class="py-3 px-4 block w-full border-2 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm" required aria-describedby="email-error">
                         </div>
                         <p class="hidden text-xs text-red-600 mt-2" id="newpass-error">Please include a valid email address so we can get back to you</p>
                     </div>
                     <div class="grid gap-y-4">
                     <div>
                         <div class="relative">
-                        <input type="confirmpas" id="confirmpas" name="confirmpas" placeholder="Confirm your password" class="py-3 px-4 block w-full border-2 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm" required aria-describedby="email-error">
+                        <input type="text" id="confirmpas" name="confirmpas" placeholder="Confirm your password" class="py-3 px-4 block w-full border-2 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm" required aria-describedby="email-error">
                         </div>
                         <p class="hidden text-xs text-red-600 mt-2" id="confirmpas-error">Please include a valid email address so we can get back to you</p>
                     </div>

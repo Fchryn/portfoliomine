@@ -14,7 +14,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
                 @foreach ($data as $isi)
-                    <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:ring-4">
                         <div class="relative overflow-hidden">
                             <div class="h-[300px] w-[250px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
                                 <iframe class="shadow-md w-full h-full object-cover" frameborder="0" allowfullscreen="1"

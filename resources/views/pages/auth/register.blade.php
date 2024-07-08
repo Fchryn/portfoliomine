@@ -19,7 +19,7 @@
                                 <div class="flex w-full rounded-lg pt-1">
                                     <div class="relative w-full"><input
                                             class="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 p-2.5 text-sm rounded-lg"
-                                            id="Uname" type="Uname" name="Uname" placeholder=""
+                                            id="Uname" type="text" name="Uname" placeholder=""
                                             required="">
                                     </div>
                                 </div>
@@ -45,7 +45,7 @@
                                 <div class="flex w-full rounded-lg pt-1">
                                     <div class="relative w-full"><input
                                             class="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 p-2.5 text-sm rounded-lg"
-                                            id="pass" type="pass" name="pass" required="">
+                                            id="pass" type="text" name="pass" required="">
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                                 <div class="flex w-full rounded-lg pt-1">
                                     <div class="relative w-full"><input
                                             class="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 p-2.5 text-sm rounded-lg"
-                                            id="confirmpass" type="confirmpass" name="confirmpass" required="">
+                                            id="confirmpass" type="text" name="confirmpass" required="">
                                     </div>
                                 </div>
                             </div>

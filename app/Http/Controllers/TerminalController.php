@@ -14,7 +14,7 @@ class TerminalController extends Controller
         $command = command::all();
         return view('pages.about.terminal', ['command' => $command]);
     }
-    public function execute(Request $request)
+    public function execute1(Request $request)
     {
         if (!Session::has('current_dir')) {
             Session::put('current_dir', getcwd());
@@ -53,5 +53,34 @@ class TerminalController extends Controller
         $commandRecord->save();
 
         return view('pages.about.terminal', ['output' => $output, 'command' => command::all()]);
+    }
+
+    public function execute2(Request $request)
+    {
+        $port1 = 'COM6';
+        $port2 = 'COM3';
+        $baudrate = 115200;
+
+        $commandX = $request->input('commandX', '0');
+        $commandF = $request->input('commandF', '0');
+        $command = "G1 X{$commandX} F{$commandF}";
+
+        $output1 = shell_exec("python3 execute_gcode.py {$port1} {$baudrate} \"{$command}\"");
+        $output2 = shell_exec("python3 execute_gcode.py {$port2} {$baudrate} \"{$command}\"");
+
+        // Save the command and output for both Arduinos
+        $commandRecord1 = new command;
+        $commandRecord1->command = $command;
+        $commandRecord1->output = $output1;
+        $commandRecord1->arduino = 'Arduino 1';
+        $commandRecord1->save();
+
+        $commandRecord2 = new command;
+        $commandRecord2->command = $command;
+        $commandRecord2->output = $output2;
+        $commandRecord2->arduino = 'Arduino 2';
+        $commandRecord2->save();
+
+        return view('pages.about.terminal', ['output' => $output1 . "\n" . $output2, 'command' => command::all()]);
     }
 }

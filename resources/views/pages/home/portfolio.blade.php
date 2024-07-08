@@ -41,7 +41,7 @@
                         <div class="border-t border-gray-700"></div>
 
                         <div class="flex shadow-md space-x-2 items-center text-white">
-                            <div class="flex items-center space-x-2">
+                            <div class="flex items-center space-x-2 hover:ring-4 rounded-md">
                                 <a href="https://www.instagram.com/iwan_fachryan/?utm_source=qr&igsh=MWpqNzJrM2xxd3J1aQ%3D%3D" 
                                 class="flex items-center px-3 py-3 bg-white rounded-md shadow-sm">
                                     <div class="p-3 bg-indigo-600 bg-opacity-75 rounded-full">
@@ -58,7 +58,7 @@
 
                             <div class="h-10 border-l border-gray-700"></div>
 
-                            <div class="flex items-center space-x-2">
+                            <div class="flex items-center space-x-2 hover:ring-4 rounded-md">
                                 <a href="https://www.linkedin.com/in/iwan-fachryan?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
                                 class="flex items-center px-3 py-2 bg-white rounded-md shadow-sm">
                                     <div class="p-3 bg-orange-500 bg-opacity-75 rounded-full">

@@ -13,5 +13,5 @@ class command extends Model
     protected $primaryKey = 'id';
     public $incrementing = true;
     
-    protected $fillable = ["command", "output"];
+    protected $fillable = ["command", "output", "arduino"];
 }

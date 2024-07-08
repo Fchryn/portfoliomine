@@ -14,7 +14,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
                 @foreach ($data as $isi)
-                    <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:ring-4">
                         <div class="relative overflow-hidden">
                             <img class="object-cover w-full h-56" src="{{$isi->img}}">
                             <div class="absolute inset-0 bg-black opacity-40"></div>

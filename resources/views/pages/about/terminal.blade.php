@@ -21,32 +21,37 @@
                     <pre>{{ $command->output }}</pre>
                 @endforeach
             </div>
-            <form class="mt-5" action="{{ url('/execute-command') }}" method="post">
+            <form class="mt-5" action="{{ url('/execute-command1') }}" method="post">
                 @csrf
                 <input class="rounded-full" type="text" id="command" name="command" placeholder="Enter command" autocomplete="off">
                 <button class="text-white transition-colors bg-emerald-950 hover:bg-yellow-950 hover:ring-yellow-950 py-2 px-4 rounded-full font-bold" type="submit">Execute</button>
             </form>
-            <form action="{{ url('/send-gcode') }}" method="post">
+            <form action="{{ url('/execute-command2') }}" method="post">
                 @csrf
-                <label for="x_value">X Value (0-1000):</label>
-                <input type="range" id="x_value" name="x_value" min="0" max="1000" class="slider" oninput="updateXValueDisplay(this.value)">
-                <span id="x_value_display">0</span>
+                <label for="commandX">X Value (0-1000):</label>
+                <input type="range" id="commandX" name="commandX" min="0" max="1000" value="0">
+                <span id="xValue">0</span>
                 <br>
-                <label for="f_value">F Value (0-4000):</label>
-                <input type="range" id="f_value" name="f_value" min="0" max="4000" class="slider" oninput="updateFValueDisplay(this.value)">
-                <span id="f_value_display">0</span>
+                <label for="commandF">F Value (0-10000):</label>
+                <input type="range" id="commandF" name="commandF" min="0" max="10000" value="0">
+                <span id="fValue">0</span>
                 <br>
-                <button type="submit">Send G-code</button>
+                <button type="submit">Execute G-Code</button>
             </form>
         
             <script>
-                function updateXValueDisplay(value) {
-                    document.getElementById('x_value_display').innerText = value;
-                }
+                const commandX = document.getElementById('commandX');
+                const commandF = document.getElementById('commandF');
+                const xValue = document.getElementById('xValue');
+                const fValue = document.getElementById('fValue');
         
-                function updateFValueDisplay(value) {
-                    document.getElementById('f_value_display').innerText = value;
-                }
+                commandX.addEventListener('input', () => {
+                    xValue.textContent = commandX.value;
+                });
+        
+                commandF.addEventListener('input', () => {
+                    fValue.textContent = commandF.value;
+                });
             </script>
         </div>
     </div>

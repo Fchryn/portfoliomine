@@ -12,7 +12,8 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::get('/terminal', [TerminalController::class, 'terminal']);
-Route::post('/execute-command', [TerminalController::class, 'execute']);
+Route::post('/execute-command1', [TerminalController::class, 'execute1']);
+Route::post('/execute-command2', [TerminalController::class, 'execute2']);
 //Route::post('/start-chili-detection', [TerminalController::class, 'startChiliDetection']);
 //Route::post('/stop-chili-detection', [TerminalController::class, 'stopChiliDetection']);
 
