@@ -13,5 +13,5 @@ class about extends Model
     protected $primaryKey = 'id';
     public $incrementing = true;
     
-    protected $fillable = ["img", "video", "isi", "title", "explain", "description"];
+    protected $fillable = ["img", "video", "isi", "title", "explain", "description", "feature"];
 }

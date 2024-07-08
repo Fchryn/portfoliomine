@@ -23,13 +23,19 @@ class AboutController extends Controller
 
     public function mycertificates()
     {
-        $data = about::skip(6)->take(1)->get();
+        $data = about::skip(6)->take(2)->get();
         return view('pages.about.mycertificates', compact('data'));
     }
 
-    public function detail($id)
+    public function detailprojects($id)
     {
         $data = about::find($id);
-        return view('pages.about.detail', compact('data'));
+        return view('pages.about.detailprojects', compact('data'));
+    }
+
+    public function mypapers()
+    {
+        $data = about::skip(8)->take(2)->get();
+        return view('pages.about.mypapers', compact('data'));
     }
 }

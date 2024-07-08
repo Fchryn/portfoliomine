@@ -53,3 +53,7 @@
     font-family: monospace;
     outline: none;
 }
+
+.slider {
+  width: 40%;
+}

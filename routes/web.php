@@ -11,19 +11,20 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
-//Route::get('/terminal', [TerminalController::class, 'terminal']);
-//Route::post('/execute-command', [TerminalController::class, 'execute']);
+Route::get('/terminal', [TerminalController::class, 'terminal']);
+Route::post('/execute-command', [TerminalController::class, 'execute']);
 //Route::post('/start-chili-detection', [TerminalController::class, 'startChiliDetection']);
 //Route::post('/stop-chili-detection', [TerminalController::class, 'stopChiliDetection']);
 
-Route::get('/terminal', [RaspiCntdController::class, 'terminal']);
-Route::post('/execute-command', [RaspiCntdController::class, 'execute']);
+//Route::get('/terminal', [RaspiCntdController::class, 'terminal']);
+//Route::post('/execute-command', [RaspiCntdController::class, 'execute']);
 
 Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/mycertificates', [AboutController::class, 'mycertificates'])->name('mycertificates');
+Route::get('/mypapers', [AboutController::class, 'mypapers'])->name('mypapers');
 Route::group(['prefix' => 'myprojects', 'as' => 'myprojects.'], function () {
     Route::get('/', [AboutController::class, 'myprojects'])->name('myprojects');
-    Route::get('/{id}', [AboutController::class, 'detail'])->name('detail');
+    Route::get('/{id}', [AboutController::class, 'detailprojects'])->name('detailprojects');
 });
 
 Route::group(['prefix' => 'contact', 'as' => 'contact.'], function () {

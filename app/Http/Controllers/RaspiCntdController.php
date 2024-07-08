@@ -48,15 +48,16 @@ class RaspiCntdController extends Controller
         } elseif ($command === 'clear' || $command === 'cls') {
             command::truncate();
             $output = "Screen cleared.";
-        } elseif (str_starts_with($command, 'venv ')) {
-            // Handle virtual environment creation
-            $envName = trim(substr($command, 5));
+        } elseif (str_starts_with($command, 'python3 -m venv ')) {
+            $envName = trim(substr($command, strlen('python3 -m venv ')));
             $fullCommand = "cd $currentDir && python3 -m venv $envName";
             $output = $this->ssh->exec($fullCommand);
-        } elseif (str_starts_with($command, 'pip ')) {
-            // Handle package installation
-            $pipCommand = trim(substr($command, 4));
-            $fullCommand = "cd $currentDir && $pipCommand";
+        } elseif (str_starts_with($command, 'source ')) {
+            $envName = trim(substr($command, strlen('source '), strpos($command, '/bin/activate') - strlen('source ')));
+            $fullCommand = "cd $currentDir && source $envName/bin/activate";
+            $output = $this->ssh->exec($fullCommand);
+        } elseif ($command === 'deactivate') {
+            $fullCommand = "deactivate";
             $output = $this->ssh->exec($fullCommand);
         } else {
             $fullCommand = "cd $currentDir && $command";
