@@ -45,7 +45,7 @@ class MainUserController extends Controller
         $user = new User($data);
         $user->password = Hash::make($data['password']);
         $user->save();
-
+        
         //return response()->json([
             //'message' => 'User successfully registered',
             //'user' => new UserResource($user)
