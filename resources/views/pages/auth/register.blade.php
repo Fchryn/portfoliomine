@@ -92,55 +92,39 @@
 </div>
 
 <script>
-    document.getElementById('registerForm').addEventListener('submit', function(event) {
+    document.getElementById('registerForm').addEventListener('submit', async function(event) {
         event.preventDefault();
-
-        // Reset error messages
-        document.querySelectorAll('.error-message').forEach(function(element) {
-            element.textContent = '';
-        });
-        document.getElementById('success-message').textContent = '';
-
-        const formData = {
-            username: document.getElementById('username').value,
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            password: document.getElementById('password').value
+        let formData = new FormData(this);
+        let data = {
+            username: formData.get('username'),
+            name: formData.get('name'),
+            email: formData.get('email'),
+            password: formData.get('password'),
         };
+        
+        try {
+            let response = await fetch('{{ route('api.register') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify(data)
+            });
 
-        fetch('{{ route("pages.auth.register") }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.errors) {
-                // Display error messages
-                if (data.errors.username) {
-                    document.getElementById('username-error').textContent = data.errors.username[0];
-                }
-                if (data.errors.name) {
-                    document.getElementById('name-error').textContent = data.errors.name[0];
-                }
-                if (data.errors.email) {
-                    document.getElementById('email-error').textContent = data.errors.email[0];
-                }
-                if (data.errors.password) {
-                    document.getElementById('password-error').textContent = data.errors.password[0];
-                }
+            if (response.ok) {
+                window.location.href = '{{ route('login.view') }}';
             } else {
-                // Display success message and clear form
-                document.getElementById('success-message').textContent = 'Registration successful! Redirecting to login...';
-                setTimeout(function() {
-                    window.location.href = "{{ route('pages.auth.login') }}";
-                }, 2000);
+                let result = await response.json();
+                console.log(result.errors);
+                // Handle validation errors
+                for (const [key, messages] of Object.entries(result.errors)) {
+                    document.getElementById(`${key}-error`).textContent = messages.join(', ');
+                }
             }
-        })
-        .catch(error => console.error('Error:', error));
+        } catch (error) {
+            console.error('Error:', error);
+        }
     });
 </script>
 @endsection

@@ -19,16 +19,9 @@ Route::post('/execute-command2', [\App\Http\Controllers\TerminalController::clas
 Route::get('/login', [\App\Http\Controllers\MainUserController::class, 'login'])->name('login');
 Route::get('/forgotpass', [\App\Http\Controllers\MainUserController::class, 'forgotPassword'])->name('forgotPassword');
 
-Route::get('/register', function () {
-    return view('pages.auth.register');
-})->name('register');
+Route::view('/register', 'pages.auth.register')->name('register.view');
 
-Route::post('/register', [\App\Http\Controllers\MainUserController::class, 'register'])->name('user.register');
-
-Route::group(['prefix' => 'register', 'as' => 'register.'], function () {
-    Route::get('/', [\App\Http\Controllers\MainUserController::class, 'register'])->name('register');
-    Route::post('/', [\App\Http\Controllers\MainUserController::class, 'AlreadyRegister'])->name('AlreadyRegister');
-});
+Route::view('/login', 'pages.auth.login')->name('login.view');
 
 Route::get('/about', [\App\Http\Controllers\AboutController::class, 'about'])->name('about');
 Route::get('/mycertificates', [\App\Http\Controllers\AboutController::class, 'mycertificates'])->name('mycertificates');

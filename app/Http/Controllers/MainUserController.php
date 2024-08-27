@@ -12,15 +12,6 @@ use Illuminate\Support\Facades\Hash;
 
 class MainUserController extends Controller
 {
-    public function login()
-    {
-        return view('pages.auth.login');
-    }
-
-    public function register()
-    {
-        return view('pages.auth.register');
-    }
 
     public function forgotPassword()
     {
@@ -60,6 +51,7 @@ class MainUserController extends Controller
             //'user' => new UserResource($user)
         //], 201);
         return (new UserResource($user))->response()->setStatusCode(201);
+        //return response()->json(new UserResource($user), 201);
         //return view('pages.auth.login', ['User' => User::all()]);
     }
 }
