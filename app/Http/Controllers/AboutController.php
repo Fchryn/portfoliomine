@@ -11,19 +11,19 @@ class AboutController extends Controller
 {
     public function about()
     {
-        $data = about::take(6)->get();
+        $data = about::take(8)->get();
         return view('pages.about.page', compact('data'));
     }
 
     public function myprojects()
     {
-        $data = about::take(6)->get();
+        $data = about::take(8)->get();
         return view('pages.about.page', compact('data'));
     }
 
     public function mycertificates()
     {
-        $data = about::skip(6)->take(2)->get();
+        $data = about::skip(8)->take(2)->get();
         return view('pages.about.mycertificates', compact('data'));
     }
 
@@ -35,7 +35,7 @@ class AboutController extends Controller
 
     public function mypapers()
     {
-        $data = about::skip(8)->take(2)->get();
+        $data = about::skip(10)->take(2)->get();
         return view('pages.about.mypapers', compact('data'));
     }
 }

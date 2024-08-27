@@ -35,7 +35,7 @@
                                             id="password" type="password" name="password" required="">
                                     </div>
                                 </div>
-                                <a href="/coba_forgotpass" class="mt-2 cursor-pointer text-blue-500 hover:text-blue-600">Forgot password?</a>
+                                <a href="forgotpass" class="mt-2 cursor-pointer text-blue-500 hover:text-blue-600">Forgot password?</a>
                             </div>
                             <div class="flex flex-col gap-2">
                                 <button type="submit"
@@ -84,7 +84,7 @@
                         </form>
                         <div class="min-w-[270px]">
                             <div class="mt-4 text-center dark:text-gray-200">New user?
-                                <a href="/coba_register" class="text-blue-500 underline hover:text-blue-600">Create account
+                                <a href="/register" class="text-blue-500 underline hover:text-blue-600">Create account
                                     here</a>
                             </div>
                         </div>

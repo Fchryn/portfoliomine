@@ -1,52 +1,48 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\TerminalController;
-use App\Http\Controllers\RaspiCntdController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 
-Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
-Route::get('/terminal', [TerminalController::class, 'terminal']);
-Route::post('/execute-command1', [TerminalController::class, 'execute1']);
-Route::post('/execute-command2', [TerminalController::class, 'execute2']);
+Route::get('/terminal', [\App\Http\Controllers\TerminalController::class, 'terminal']);
+Route::post('/execute-command1', [\App\Http\Controllers\TerminalController::class, 'execute1']);
+Route::post('/execute-command2', [\App\Http\Controllers\TerminalController::class, 'execute2']);
 //Route::post('/start-chili-detection', [TerminalController::class, 'startChiliDetection']);
 //Route::post('/stop-chili-detection', [TerminalController::class, 'stopChiliDetection']);
 
 //Route::get('/terminal', [RaspiCntdController::class, 'terminal']);
 //Route::post('/execute-command', [RaspiCntdController::class, 'execute']);
 
-Route::get('/about', [AboutController::class, 'about'])->name('about');
-Route::get('/mycertificates', [AboutController::class, 'mycertificates'])->name('mycertificates');
-Route::get('/mypapers', [AboutController::class, 'mypapers'])->name('mypapers');
+//Route::get('/register', [\App\Http\Controllers\MainUserController::class, 'register'])->name('register');
+Route::get('/login', [\App\Http\Controllers\MainUserController::class, 'login'])->name('login');
+Route::get('/forgotpass', [\App\Http\Controllers\MainUserController::class, 'forgotPassword'])->name('forgotPassword');
+
+Route::get('/register', function () {
+    return view('pages.auth.register');
+})->name('register');
+
+Route::post('/register', [\App\Http\Controllers\MainUserController::class, 'register'])->name('user.register');
+
+Route::group(['prefix' => 'register', 'as' => 'register.'], function () {
+    Route::get('/', [\App\Http\Controllers\MainUserController::class, 'register'])->name('register');
+    Route::post('/', [\App\Http\Controllers\MainUserController::class, 'AlreadyRegister'])->name('AlreadyRegister');
+});
+
+Route::get('/about', [\App\Http\Controllers\AboutController::class, 'about'])->name('about');
+Route::get('/mycertificates', [\App\Http\Controllers\AboutController::class, 'mycertificates'])->name('mycertificates');
+Route::get('/mypapers', [\App\Http\Controllers\AboutController::class, 'mypapers'])->name('mypapers');
+
 Route::group(['prefix' => 'myprojects', 'as' => 'myprojects.'], function () {
-    Route::get('/', [AboutController::class, 'myprojects'])->name('myprojects');
-    Route::get('/{id}', [AboutController::class, 'detailprojects'])->name('detailprojects');
+    Route::get('/', [\App\Http\Controllers\AboutController::class, 'myprojects'])->name('myprojects');
+    Route::get('/{id}', [\App\Http\Controllers\AboutController::class, 'detailprojects'])->name('detailprojects');
 });
 
 Route::group(['prefix' => 'contact', 'as' => 'contact.'], function () {
-    Route::get('/', [ContactController::class, 'index'])->name('index');
-    Route::post('/', [ContactController::class, 'insert'])->name('insert');
+    Route::get('/', [\App\Http\Controllers\ContactController::class, 'index'])->name('index');
+    Route::post('/', [\App\Http\Controllers\ContactController::class, 'insert'])->name('insert');
 });
 
-Route::get('/coba_login', [AuthController::class, 'login'])->name('login');
-Route::get('/coba_register', [AuthController::class, 'register'])->name('register');
-Route::get('/coba_forgotpass', [AuthController::class, 'forgotpass'])->name('forgotpass');
-Route::get('/coba_newpass', [AuthController::class, 'newpass'])->name('newpass');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
 
