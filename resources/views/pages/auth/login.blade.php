@@ -117,9 +117,9 @@
                 });
                 if (response.ok) {
                     const data = await response.json();
+                    window.location.href = "{{ route('portfolio.view') }}";
                     if (data.token) {
                     localStorage.setItem('auth_token', data.token);
-                    window.location.href = "{{ route('portfolio.view') }}";
                     }
                 } else {
                     let result = await response.json();
