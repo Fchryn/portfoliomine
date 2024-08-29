@@ -112,10 +112,10 @@
                 body: JSON.stringify(data)
             });
 
+            let result = await response.json();
             if (response.ok) {
                 window.location.href = '{{ route('login.view') }}';
             } else {
-                let result = await response.json();
                 console.log(result.errors);
                 // Handle validation errors
                 for (const [key, messages] of Object.entries(result.errors)) {

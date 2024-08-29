@@ -115,14 +115,13 @@
                     },
                     body: JSON.stringify(data)
                 });
+                let result = await response.json();
                 if (response.ok) {
-                    const data = await response.json();
                     window.location.href = "{{ route('portfolio.view') }}";
-                    if (data.token) {
-                    localStorage.setItem('auth_token', data.token);
+                    if (result.token) {
+                    localStorage.setItem('auth_token', result.token);
                     }
                 } else {
-                    let result = await response.json();
                     console.log(result.errors);
                     // Handle validation errors
                     for (const [key, messages] of Object.entries(result.errors)) {
