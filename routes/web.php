@@ -17,9 +17,11 @@ Route::post('/execute-command2', [\App\Http\Controllers\TerminalController::clas
 //Route::post('/execute-command', [RaspiCntdController::class, 'execute']);
 
 Route::get('/forgotpass', [\App\Http\Controllers\MainUserController::class, 'forgotPassword']);
+//Route::get('/newpass', [\App\Http\Controllers\MainUserController::class, 'newPassword']);
 
 Route::view('/register', 'pages.auth.register');
 Route::view('/login', 'pages.auth.login')->name('login.view');
+Route::view('/newpass', 'pages.auth.newpass')->name('newpass.view');
 
 Route::get('/about', [\App\Http\Controllers\AboutController::class, 'about']);
 Route::get('/mycertificates', [\App\Http\Controllers\AboutController::class, 'mycertificates']);

@@ -15,22 +15,24 @@
                 </div>
         
                 <div class="mt-4">
-                <form>
+                <form id="forgotpassForm" class="flex flex-col gap-4 pb-4" method="POST">
                     <div class="grid gap-y-4">
-                    <div>
-                        <div class="relative">
-                        <input type="text" id="newpass" name="newpass" placeholder="Create your password" class="py-3 px-4 block w-full border-2 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm" required aria-describedby="email-error">
+                        <div class="flex w-full rounded-lg pt-1">
+                            <div class="relative w-full"><input
+                                class="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 p-2.5 text-sm rounded-lg"
+                                id="oldPass" type="password" name="oldPass" placeholder="Your old password"
+                                required="">
+                            </div>
                         </div>
-                        <p class="hidden text-xs text-red-600 mt-2" id="newpass-error">Please include a valid email address so we can get back to you</p>
-                    </div>
-                    <div class="grid gap-y-4">
-                    <div>
-                        <div class="relative">
-                        <input type="text" id="confirmpas" name="confirmpas" placeholder="Confirm your password" class="py-3 px-4 block w-full border-2 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm" required aria-describedby="email-error">
+                        <div class="flex w-full rounded-lg pt-1">
+                            <div class="relative w-full"><input
+                                class="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 p-2.5 text-sm rounded-lg"
+                                id="newPass" type="password" name="newPass" placeholder="Your new password"
+                                required="">
+                            </div>
                         </div>
-                        <p class="hidden text-xs text-red-600 mt-2" id="confirmpas-error">Please include a valid email address so we can get back to you</p>
-                    </div>
-                    <a href="/coba_newpass" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Change</a>
+                        <div class="error-message" id="email-error"></div>
+                    <a href="/login" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Change</a>
                     </div>
                 </form>
                 </div>

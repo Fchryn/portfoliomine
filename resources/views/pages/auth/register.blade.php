@@ -111,7 +111,6 @@
                 },
                 body: JSON.stringify(data)
             });
-
             let result = await response.json();
             if (response.ok) {
                 window.location.href = '{{ route('login.view') }}';

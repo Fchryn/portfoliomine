@@ -14,17 +14,30 @@
                 </p>
                 </div>
         
-                <div class="mt-4">
-                <form>
+                <div class="mt-2">
+                <form id="forgotpassForm" class="flex flex-col gap-4 pb-4" method="POST">
                     <div class="grid gap-y-4">
-                    <div>
-                        <label for="email" class="block text-sm font-bold ml-1 mb-2 dark:text-white">Email address</label>
-                        <div class="relative">
-                        <input type="email" id="email" name="email" placeholder="email@example.com" class="py-3 px-4 block w-full border-2 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm" required aria-describedby="email-error">
+                        <div>
+                            <label class="text-sm font-medium text-gray-900 dark:text-gray-300"
+                                for="email">Email</label>
                         </div>
-                        <p class="hidden text-xs text-red-600 mt-2" id="email-error">Please include a valid email address so we can get back to you</p>
-                    </div>
-                    <a href="/coba_newpass" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Continue</a>
+                        <div class="flex w-full rounded-lg pt-1">
+                            <div class="relative w-full"><input
+                                class="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 p-2.5 text-sm rounded-lg"
+                                id="email" type="email" name="email" placeholder="email@example.com"
+                                required="">
+                            </div>
+                        </div>
+                        <div class="error-message" id="email-error"></div>
+                        <div class="flex flex-col gap-2">
+                            <button type="submit"
+                                class="border transition-colors focus:ring-2 p-0.5 disabled:cursor-not-allowed border-transparent bg-sky-600 hover:bg-sky-700 active:bg-sky-800 text-white disabled:bg-gray-300 disabled:text-gray-700 rounded-lg ">
+                                <span
+                                    class="flex items-center justify-center gap-1 font-medium py-1 px-2.5 text-base false">
+                                    Continue
+                                </span>
+                            </button>
+                        </div>
                     </div>
                 </form>
                 </div>
@@ -32,6 +45,42 @@
             </div>
         </main>
     </div>
+
+    <script>
+        document.getElementById('forgotpassForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            let formData = new FormData(this);
+            let data = {
+                email: formData.get('email')
+            };
+            
+            try {
+                let response = await fetch('{{ route('api.forgotpass') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify(data)
+                });
+                let result = await response.json();
+                if (response.ok) {
+                    window.location.href = "{{ route('newpass.view') }}";
+                    if (result.token) {
+                    localStorage.setItem('auth_token', result.token);
+                    }
+                } else {
+                    console.log(result.errors);
+                    // Handle validation errors
+                    for (const [key, messages] of Object.entries(result.errors)) {
+                        document.getElementById(`${key}-error`).textContent = messages.join(', ');
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
 @endsection
 
 

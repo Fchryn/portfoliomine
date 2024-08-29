@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserChangePassRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Resources\UserResource;
@@ -72,6 +73,25 @@ class MainUserController extends Controller
             ], 401));
         }
         $user->token = Str::uuid()->toString();
+        $user->save();
+
+        return new UserResource($user);
+    }
+
+    public function forgotpass(UserChangePassRequest $request): UserResource {
+        $data = $request->validated();
+
+        $user = User::where('email', $data['email'])->first();
+
+        if(!$user) {
+            throw new HttpResponseException(response([
+                "errors" => [
+                    "message" => [
+                       "Email Wrong." 
+                    ]
+                ]
+            ], 401));
+        }
         $user->save();
 
         return new UserResource($user);
