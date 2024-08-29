@@ -32,7 +32,7 @@ class MainUserController extends Controller
             throw new HttpResponseException(response()->json([
                 "errors" => [
                     "username" => [
-                        "Username or email already registered"
+                        "Username already registered"
                         ],
                         "name" => [
                            "Name Already Registered" 

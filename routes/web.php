@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
+Route::view('/', 'pages.home.portfolio')->name('portfolio.view');
 
 Route::get('/terminal', [\App\Http\Controllers\TerminalController::class, 'terminal']);
 Route::post('/execute-command1', [\App\Http\Controllers\TerminalController::class, 'execute1']);
@@ -17,8 +18,7 @@ Route::post('/execute-command2', [\App\Http\Controllers\TerminalController::clas
 
 Route::get('/forgotpass', [\App\Http\Controllers\MainUserController::class, 'forgotPassword']);
 
-Route::view('/register', 'pages.auth.register')->name('register.view');
-
+Route::view('/register', 'pages.auth.register');
 Route::view('/login', 'pages.auth.login')->name('login.view');
 
 Route::get('/about', [\App\Http\Controllers\AboutController::class, 'about']);

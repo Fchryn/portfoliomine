@@ -10,8 +10,4 @@ class HomeController extends Controller
     {
         return view('pages.home.portfolio');
     }
-    public function store()
-    {
-        return view('pages.home.portfolio');
-    }
 }

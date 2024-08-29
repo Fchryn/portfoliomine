@@ -9,7 +9,8 @@
                 class="rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-900 flex-col flex h-full items-center justify-center sm:px-4">
                 <div class="flex h-full flex-col justify-center gap-4 p-6">
                     <div class="left-0 right-0 inline-block border-gray-200 px-2 py-2.5 sm:px-4">
-                        <form class="flex flex-col gap-4 pb-4">
+                        <form id="loginForm" class="flex flex-col gap-4 pb-4" method="POST">
+                            @csrf
                             <h1 class="mb-4 text-2xl font-bold  dark:text-white">Login</h1>
                             <div>
                                 <div class="mb-2">
@@ -23,6 +24,7 @@
                                             required="">
                                     </div>
                                 </div>
+                                <div class="error-message" id="email-error"></div>
                             </div>
                             <div>
                                 <div class="mb-2">
@@ -35,6 +37,7 @@
                                             id="password" type="password" name="password" required="">
                                     </div>
                                 </div>
+                                <div class="error-message" id="password-error"></div>
                                 <a href="forgotpass" class="mt-2 cursor-pointer text-blue-500 hover:text-blue-600">Forgot password?</a>
                             </div>
                             <div class="flex flex-col gap-2">
@@ -93,6 +96,44 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            let formData = new FormData(this);
+            let data = {
+                email: formData.get('email'),
+                password: formData.get('password')
+            };
+            
+            try {
+                let response = await fetch('{{ route('api.login') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify(data)
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.token) {
+                    localStorage.setItem('auth_token', data.token);
+                    window.location.href = "{{ route('portfolio.view') }}";
+                    }
+                } else {
+                    let result = await response.json();
+                    console.log(result.errors);
+                    // Handle validation errors
+                    for (const [key, messages] of Object.entries(result.errors)) {
+                        document.getElementById(`${key}-error`).textContent = messages.join(', ');
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
 @endsection
 
 
