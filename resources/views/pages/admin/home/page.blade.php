@@ -1,4 +1,4 @@
-<!-- ======= pages/home/portfolio ======= -->
+<!-- ======= pages/admin/home/page ======= -->
 
 @extends('pages.admin.partials.master')
 

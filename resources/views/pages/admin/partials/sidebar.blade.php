@@ -1,4 +1,4 @@
-<!-- ======= partials/sidebar ======= -->
+<!-- ======= pages/admin/partials/sidebar ======= -->
 
 <div class="sidebar z-10 shadow-md bg-teal-950" id="mySidebar">
     <a href="" class="close-btn active:text-black hover:text-slate-300" onclick="closeNav()">&times;</a>

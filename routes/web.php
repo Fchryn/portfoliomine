@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
-Route::view('/', 'pages.home.portfolio')->name('portfolio.view');
+Route::view('/admin', 'pages.admin.home.pages')->name('admin.view');
 Route::get('/google/redirect', [\App\Http\Controllers\HomeController::class, 'redirect'])->name('google.redirect');
 //Route::get('/google/callback', [\App\Http\Controllers\HomeController::class, 'callback'])->name('google.callback');
 
@@ -42,7 +42,7 @@ Route::group(['prefix' => 'contact', 'as' => 'contact.'], function () {
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/', [\App\Http\Controllers\adminController::class, 'home'])->name('home.view');
+    Route::get('/', [\App\Http\Controllers\adminController::class, 'home'])->name('admin.view');
     Route::get('/add', [\App\Http\Controllers\adminController::class, 'Addhome'])->name('Addhome.view');
     Route::get('/edit', [\App\Http\Controllers\adminController::class, 'Edithome'])->name('Edithome.view');
     Route::get('/about', [\App\Http\Controllers\adminController::class, 'about'])->name('about.view');

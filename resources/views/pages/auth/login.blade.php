@@ -139,7 +139,7 @@
                 });
                 let result = await response.json();
                 if (response.ok) {
-                    window.location.href = "{{ route('portfolio.view') }}";
+                    window.location.href = "/admin";
                     if (result.token) {
                     localStorage.setItem('auth_token', result.token);
                     }

@@ -9,7 +9,7 @@ class adminController extends Controller
 {
     public function home()
     {
-        return view('pages.admin.home.pages');
+        return view('pages.admin.home.page');
     }
 
     public function Addhome()
@@ -25,7 +25,7 @@ class adminController extends Controller
     public function about()
     {
         $data = about::take(8)->get();
-        return view('pages.admin.about.pages', compact('data'));
+        return view('pages.admin.about.page', compact('data'));
     }
 
     public function Addabout()
@@ -40,7 +40,7 @@ class adminController extends Controller
 
     public function contact()
     {
-        return view('pages.admin.contact.pages');
+        return view('pages.admin.contact.page');
     }
 
     public function Addcontact()

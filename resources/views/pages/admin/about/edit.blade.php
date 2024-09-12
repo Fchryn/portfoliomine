@@ -1,4 +1,4 @@
-<!-- ======= pages/about/page ======= -->
+<!-- ======= pages/admin/about/edit ======= -->
 
 @extends('pages.admin.partials.master')
 
@@ -60,6 +60,12 @@
                                     class="flex items-center justify-center gap-1 font-medium py-1 px-2.5 text-base false">
                                     Edit Feature
                                 </span>
+                        </button>
+                        <button type="submit"
+                            class="mt-5 border transition-colors focus:ring-2 p-0.5 disabled:cursor-not-allowed border-transparent bg-sky-600 hover:bg-sky-700 active:bg-sky-800 text-white disabled:bg-gray-300 disabled:text-gray-700 rounded-lg ">   
+                                <a href="/admin/about" class="flex items-center justify-center gap-1 font-medium py-1 px-2.5 text-base false">
+                                    Back
+                                </a>
                         </button>
                     </form>
                 </div>
