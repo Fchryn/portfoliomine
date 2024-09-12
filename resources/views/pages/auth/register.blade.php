@@ -2,6 +2,8 @@
 
 @extends('home')
 
+@section('title', 'Register')
+
 @section('konten')
 <div class="py-20 bg-slate-950">
     <div class="flex h-full items-center justify-center">
@@ -115,8 +117,7 @@
             if (response.ok) {
                 window.location.href = '{{ route('login.view') }}';
             } else {
-                console.log(result.errors);
-                // Handle validation errors
+                //console.log(result.errors);
                 for (const [key, messages] of Object.entries(result.errors)) {
                     document.getElementById(`${key}-error`).textContent = messages.join(', ');
                 }

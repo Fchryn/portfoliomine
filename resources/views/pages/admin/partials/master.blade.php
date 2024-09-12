@@ -10,7 +10,7 @@
 </head>
 <body>
   
-  @include('partials.sidebar')
+  @include('pages.admin.partials.sidebar')
 
   @yield('konten')
 

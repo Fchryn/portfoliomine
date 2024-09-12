@@ -1,18 +1,21 @@
 <!-- ======= pages/home/portfolio ======= -->
 
-@extends('home')
+@extends('pages.admin.partials.master')
 
-@section('tittle', 'Iwan_Fachryan')
+@section('title', 'admin - Iwan_Fachryan')
 
 @section('konten')
     <div class="h-screen w-screen bg-slate-950">
-        <div class="mx-auto max-w-7xl pt-16 sm:pt-24">
+        <div class="mx-auto max-w-7xl sm:pt-24">
+
+            @include('pages.admin.home.buttonAdmin')
+
             <div class="space-y-8 lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-8">
                 <div class="px-6 sm:text-center md:mx-auto md:max-w-2xl lg:col-span-6 lg:flex lg:items-center lg:text-left">
                     <div class="space-y-8">
                         <div class="space-y-4">
                             <div class="space-y-2">
-                                <a href="/"
+                                <a href="/admin"
                                     class="rounded-full uppercase bg-teal-950 px-3 py-0.5 text-lg font-semibold leading-5 text-white">
                                     portfolio
                                 </a>
@@ -20,7 +23,7 @@
                                     <span class="sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-teal-900 to-slate-400"> 
                                         Iwan Fachryan Maulana Faisal 
                                     </span> 
-                                    <a href="/about" class=" inline-block rounded-lg bg-emerald-950 px-4 py-1.5 text-lg font-semibold leading-7 text-white shadow-sm  hover:bg-yellow-950 hover:ring-yellow-950">
+                                    <a href="/admin/about" class=" inline-block rounded-lg bg-emerald-950 px-4 py-1.5 text-lg font-semibold leading-7 text-white shadow-sm  hover:bg-yellow-950 hover:ring-yellow-950">
                                         About Me
                                     <span aria-hidden="true" class="text-indigo-200 text-lg font-extrabold"> -> </span>
                                     </a>
@@ -95,4 +98,5 @@
             </div>
         </div>
     </div>
+
 @endsection

@@ -2,6 +2,8 @@
 
 @extends('home')
 
+@section('title', 'Run Project')
+
 @section('konten')
     <div class="bg-slate-950 py-14">
         <div class="container mx-auto px-4">

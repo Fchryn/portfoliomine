@@ -2,8 +2,6 @@
 
 @extends('home')
 
-@section('title', 'Change Password')
-
 @section('konten')
     <div class="w-screen bg-slate-950">
         <main id="content" role="main" class="w-full h-screen max-w-md mx-auto p-6">
@@ -48,38 +46,6 @@
             </div>
         </main>
     </div>
-
-    <script>
-        document.getElementById('forgotpassForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-            let formData = new FormData(this);
-            let data = {
-                email: formData.get('email')
-            };
-            
-            try {
-                let response = await fetch('{{ route('api.forgotpass') }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify(data)
-                });
-                let result = await response.json();
-                if (response.ok) {
-                    window.location.href = result.redirect_url;
-                } else {
-                    //console.log(result.errors);
-                    for (const [key, messages] of Object.entries(result.errors)) {
-                        document.getElementById(`${key}-error`).textContent = messages.join(', ');
-                    }
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        });
-    </script>
 @endsection
 
 

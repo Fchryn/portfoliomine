@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserChangePassRequest;
+use App\Http\Requests\UserForgotPassRequest;
 use App\Http\Requests\UserLoginRequest;
+use App\Http\Requests\UserNewPassRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -21,6 +23,11 @@ class MainUserController extends Controller
         return view('pages.auth.forgotpass');
     }
 
+    public function newPassword()
+    {
+        return view('pages.auth.newpass');
+    }
+
     public function AlreadyRegister(UserRegisterRequest $request): JsonResponse {
         $data = $request->validated();
         
@@ -36,10 +43,10 @@ class MainUserController extends Controller
                         "Username already registered"
                         ],
                         "name" => [
-                           "Name Already Registered" 
+                           "Name already Registered" 
                         ],
                         "email" => [
-                           "Email Already Registered" 
+                           "Email already Registered" 
                         ]
                 ]
             ], 400));
@@ -67,7 +74,7 @@ class MainUserController extends Controller
             throw new HttpResponseException(response([
                 "errors" => [
                     "message" => [
-                       "Email or Password Wrong." 
+                       "Email or password wrong." 
                     ]
                 ]
             ], 401));
@@ -78,22 +85,60 @@ class MainUserController extends Controller
         return new UserResource($user);
     }
 
-    public function forgotpass(UserChangePassRequest $request): UserResource {
+    public function forgotpass(UserForgotPassRequest $request): JsonResponse {
+        //$data = $request->validated();
+
+        //$user = User::where('email', $data['email'])->first();
+
+        //if(!$user) {
+            //throw new HttpResponseException(response([
+                //"errors" => [
+                    //"message" => [
+                       //"Email not found." 
+                    //]
+                //]
+            //], 401));
+        //}
+        //$user->save();
+
+        //return new UserResource($user);
+
         $data = $request->validated();
 
         $user = User::where('email', $data['email'])->first();
 
-        if(!$user) {
-            throw new HttpResponseException(response([
+        if (!$user) {
+            return (response()->json([
                 "errors" => [
-                    "message" => [
-                       "Email Wrong." 
-                    ]
+                    "email" => ["Email not found."]
                 ]
-            ], 401));
+            ], 404));
         }
+
+        return response()->json([
+            'redirect_url' => route('newpass.view', ['id' => $user->id])
+        ]);
+    }
+
+    public function changePass(UserNewPassRequest $request, int $id): JsonResponse
+    {
+        $data = $request->validated();
+        $user = User::find($id);
+
+        if (!$user || !Hash::check($data['oldPass'], $user->password)) {
+            return (response()->json([
+                "errors" => [
+                    "oldPass" => ["Old password is incorrect."]
+                ]
+            ], 400));
+        }
+
+        $user->password = Hash::make($data['newPass']);
         $user->save();
 
-        return new UserResource($user);
+        return response()->json([
+            'redirect_url' => route('login.view')
+        ]);
+        //return new UserResource($user);
     }
 }

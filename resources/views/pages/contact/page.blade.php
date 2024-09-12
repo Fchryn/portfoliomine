@@ -2,6 +2,8 @@
 
 @extends('home')
 
+@section('title', 'Contact')
+
 @section('konten')
     <div class="bg-slate-950 py-14" id="contact">
         <div class="text-center p-10">

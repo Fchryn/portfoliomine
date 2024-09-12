@@ -1,7 +1,9 @@
 <!-- ======= pages/about/page ======= -->
 
 @extends('home')
-    
+
+@section('title', 'About Me')
+
 @section('konten')
     <div class="bg-slate-950 py-14">
         <div class="container mx-auto px-4">
